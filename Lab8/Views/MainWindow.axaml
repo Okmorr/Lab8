@@ -1,0 +1,144 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Lab8.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+		MinWidth="1980" MinHeight="1080"
+		Width="1980" Height="1080"
+		MaxWidth="1980" MaxHeight="1080"
+        x:Class="Lab8.Views.MainWindow"
+        Title="Lab8">
+
+	<Grid Name="MainGrid" ColumnDefinitions="*" RowDefinitions="25, *, 50">
+		<DockPanel Name="MainGridMenu" Grid.Column="0" Grid.Row="0">
+			<Menu DockPanel.Dock="Top" VerticalAlignment="Top">
+				<MenuItem Header="File">
+					<MenuItem Name="NewBtn" Header="New"/>
+					<MenuItem Name="SaveBtn" Header="Save"/>
+					<MenuItem Name="LoadBtn" Header="Load"/>
+					<MenuItem Name="ExitBtn" Header="Exit"/>
+				</MenuItem>
+				<MenuItem Name="AboutBtn" Click="AboutPage" Header="About"/>
+			</Menu>
+		</DockPanel>
+
+		<Grid Name="MainGridLists" ColumnDefinitions="*, *, *" RowDefinitions="50, *" Grid.Column="0" Grid.Row="1">
+			<TextBlock FontSize="22" Foreground="gray" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Запланировано" Grid.Column="0" Grid.Row="0"/>
+			<TextBlock FontSize="22" Foreground="gray" HorizontalAlignment="Center" VerticalAlignment="Center" Text="В работе" Grid.Column="1" Grid.Row="0"/>
+			<TextBlock FontSize="22" Foreground="gray" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Завершено" Grid.Column="2" Grid.Row="0"/>
+
+			<ListBox Items="{Binding PlanTasks}" SelectionMode="Single" Grid.Column="0" Grid.Row="1">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Expander Header="{Binding Header}">
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="422"/>
+								</Grid.ColumnDefinitions>
+								
+								<Grid.RowDefinitions>
+									<RowDefinition Height="20"/>
+									<RowDefinition Height="30"/>
+									<RowDefinition Height="20"/>
+									<RowDefinition Height="100"/>
+									<RowDefinition Height="300"/>
+									<RowDefinition Height="50"/>
+									<RowDefinition Height="50"/>
+								</Grid.RowDefinitions>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*" MinWidth="450"/>
+								</Grid.ColumnDefinitions>
+
+								<TextBlock  Text="Название" Grid.Column="0" Grid.Row="0"/>
+								<TextBox  Text="{Binding Header}" Grid.Column="0" Grid.Row="1"/>
+								<TextBlock  Text="Описание" Grid.Column="0" Grid.Row="2"/>
+								<TextBox  Text="{Binding MainText}" Grid.Column="0" Grid.Row="3"/>
+								<Image  Source="{Binding Image}" Grid.Column="0" Grid.Row="4"/>
+								<Button Click="AddImage" Content="Добавить изображение" Grid.Column="0" Grid.Row="5"/>
+								<Button Click="DeleteTask" Content="Удалить" Grid.Column="0" Grid.Row="6"/>
+							</Grid>
+						</Expander>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+
+			<ListBox Items="{Binding ProcessingTasks}" SelectionMode="Single" Grid.Column="1" Grid.Row="1">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Expander Header="{Binding Header}">
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="422"/>
+								</Grid.ColumnDefinitions>
+								
+								<Grid.RowDefinitions>
+									<RowDefinition Height="20"/>
+									<RowDefinition Height="30"/>
+									<RowDefinition Height="20"/>
+									<RowDefinition Height="100"/>
+									<RowDefinition Height="300"/>
+									<RowDefinition Height="50"/>
+									<RowDefinition Height="50"/>
+								</Grid.RowDefinitions>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*" MinWidth="450"/>
+								</Grid.ColumnDefinitions>
+
+								<TextBlock Text="Название" Grid.Column="0" Grid.Row="0"/>
+								<TextBox Text="{Binding Header}" Grid.Column="0" Grid.Row="1"/>
+								<TextBlock Text="Описание" Grid.Column="0" Grid.Row="2"/>
+								<TextBox Text="{Binding MainText}" Grid.Column="0" Grid.Row="3"/>
+								<Image Source="{Binding Image}" Grid.Column="0" Grid.Row="4"/>
+								<Button Click="AddImage" Content="Добавить изображение" Grid.Column="0" Grid.Row="5"/>
+								<Button Click="DeleteTask" Content="Удалить" Grid.Column="0" Grid.Row="6"/>
+							</Grid>
+						</Expander>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+
+			<ListBox Items="{Binding EndedTasks}" SelectionMode="Single" Grid.Column="2" Grid.Row="1">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Expander Header="{Binding Header}">
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="422"/>
+								</Grid.ColumnDefinitions>
+								
+								<Grid.RowDefinitions>
+									<RowDefinition Height="20"/>
+									<RowDefinition Height="30"/>
+									<RowDefinition Height="20"/>
+									<RowDefinition Height="100"/>
+									<RowDefinition Height="300"/>
+									<RowDefinition Height="50"/>
+									<RowDefinition Height="50"/>
+								</Grid.RowDefinitions>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*" MinWidth="450"/>
+								</Grid.ColumnDefinitions>
+
+								<TextBlock Text="Название" Grid.Column="0" Grid.Row="0"/>
+								<TextBox Text="{Binding Header}" Grid.Column="0" Grid.Row="1"/>
+								<TextBlock Text="Описание" Grid.Column="0" Grid.Row="2"/>
+								<TextBox Text="{Binding MainText}" Grid.Column="0" Grid.Row="3"/>
+								<Image Source="{Binding Image}" Grid.Column="0" Grid.Row="4"/>
+								<Button Click="AddImage" Content="Добавить изображение" Grid.Column="0" Grid.Row="5"/>
+								<Button Click="DeleteTask" Content="Удалить" Grid.Column="0" Grid.Row="6"/>
+							</Grid>
+						</Expander>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</Grid>
+
+		<Grid Name="MainGridButtons" ColumnDefinitions="*, *, *" RowDefinitions="50" Grid.Column="0" Grid.Row="2">
+			<Button FontSize="34" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding AddTask}" CommandParameter="Plan" Content="+" Grid.Column="0"/>
+			<Button FontSize="34" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding AddTask}" CommandParameter="Processing" Content="+" Grid.Column="1"/>
+			<Button FontSize="34" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding AddTask}" CommandParameter="Ended" Content="+" Grid.Column="2"/>
+		</Grid>
+	</Grid>
+
+</Window>
